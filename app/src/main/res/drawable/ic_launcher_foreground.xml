@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- core -->
+    <path android:fillColor="#00FF62"
+        android:pathData="M54,40 m-14,0 a14,14 0 1,0 28,0 a14,14 0 1,0 -28,0" />
+    <!-- rays -->
+    <path android:strokeColor="#28F0FF" android:strokeWidth="4" android:strokeLineCap="round"
+        android:pathData="M54,14 L54,28 M54,52 L54,66 M28,40 L40,40 M68,40 L80,40
+                          M36,22 L44,30 M64,50 L72,58 M72,22 L64,30 M44,50 L36,58" />
+    <!-- flux baseline sweep -->
+    <path android:strokeColor="#FFB400" android:strokeWidth="5" android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M20,86 L40,86 L48,70 L56,94 L64,78 L88,78" />
+</vector>

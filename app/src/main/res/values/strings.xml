@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Space Weather Alerts</string>
+    <string name="widget_description">Current X-ray flux and last M+ solar flare, refreshing every 60s.</string>
+
+    <string name="data_url">https://pole-shift.observer/app1/index.html</string>
+    <string name="splash_url">https://pole-shift.observer/app1/spaceweather.png</string>
+    <string name="sdo_flare_image">https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0131.jpg</string>
+
+    <string name="settings">Settings</string>
+    <string name="enable_notifications">Flare alert notifications</string>
+    <string name="enable_notifications_sub">Notify on every M-class or greater solar flare</string>
+    <string name="test_notification">Send test notification</string>
+    <string name="update_widget">Update widget now</string>
+    <string name="system_notif_settings">Open system notification settings</string>
+
+    <string name="widget_flux_label">CURRENT X-RAY FLUX</string>
+    <string name="widget_lastm_label">LAST M+ FLARE</string>
+    <string name="refresh">Refresh</string>
+</resources>
