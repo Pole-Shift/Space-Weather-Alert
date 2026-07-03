@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FF000600</color>
+    <color name="panel">#FF041108</color>
+    <color name="green">#FF00FF62</color>
+    <color name="green_dim">#FF0B8F3C</color>
+    <color name="cyan">#FF28F0FF</color>
+    <color name="amber">#FFFFB400</color>
+    <color name="red">#FFFF2B4E</color>
+    <color name="text">#FFC7FFD8</color>
+    <color name="muted">#FF4F9C6A</color>
+    <color name="ic_launcher_background">#FF000600</color>
+</resources>

@@ -1,0 +1,63 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Fetch hosted notification sound
+        run: |
+          mkdir -p app/src/main/res/raw
+          if curl -fsSL "https://pole-shift.observer/app1/not.wav" -o app/src/main/res/raw/not.wav; then
+            echo "Downloaded not.wav from host."
+          else
+            echo "Host unreachable — keeping bundled placeholder not.wav."
+          fi
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build debug APK
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
+
+      - name: Stage APK
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/debug/*.apk "out/Space Weather Alerts.apk"
+          ls -la out
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Space-Weather-Alerts
+          path: out/Space Weather Alerts.apk
+
+      - name: Publish rolling release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          files: out/Space Weather Alerts.apk
+          fail_on_unmatched_files: true
