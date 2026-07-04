@@ -1,46 +1,104 @@
-# Space Weather Alerts
+🌞 Space Weather Alert
 
-Android app + home-screen widget for solar X-ray flux monitoring.
+Space Weather Alert is a free Android application that provides real-time monitoring of solar activity and space weather conditions. Designed for space weather enthusiasts, amateur radio operators, emergency preparedness communities, and researchers, the app delivers instant updates and alerts for significant solar events.
 
-- **Widget** — shows the **current X-ray flux** with the **last M-class-or-greater flare** (class + local time) beneath it. Auto-updates every 60 seconds.
-- **App** — splash screen, then a full-screen dashboard loaded from `https://pole-shift.observer/app1/index.html`.
-- **Alerts** — every new M/X-class flare fires a high-priority notification with the latest **SDO AIA 131 Å** image (`latest_512_0131.jpg`) and a custom sound (`not.wav`).
-- **Settings** — enable/disable notifications, send a **test notification**, force a widget refresh, and jump to system notification settings.
+Features
+📊 Real-Time Dashboard
 
-## Build (GitHub Actions — recommended)
+Monitor current space weather conditions from a single dashboard that updates automatically with the latest available data.
 
-Push to `main`. The workflow in `.github/workflows/build.yml`:
+The dashboard includes:
 
-1. Sets up JDK 17 + the Android SDK + Gradle 8.7 (no committed wrapper jar needed).
-2. Downloads the current `not.wav` from the host into `app/src/main/res/raw/` (falls back to the bundled placeholder if the host is unreachable).
-3. Runs `gradle :app:assembleDebug`.
-4. Renames the output to **`Space Weather Alerts.apk`** and uploads it as a build artifact **and** attaches it to a rolling `latest` release.
+☀️ Current Solar X-ray Flux (updates instantly)
+🌎 Geomagnetic Storm activity
+💥 Interplanetary Shock detections
+🌊 Gravity Wave activity
+🚨 Latest M-Class and X-Class Solar Flare alerts
+🚨 Solar Flare Notifications
 
-The workflow uses the built-in `GITHUB_TOKEN` with `permissions: contents: write` — **no Personal Access Token or secrets required.**
+Receive instant notifications whenever a significant solar flare occurs.
 
-Download the APK from the run's **Artifacts** section or from the **`latest`** release, then sideload it (enable "install unknown apps").
+Notifications are sent for:
 
-## Build locally
+✅ M-Class Solar Flares
+🚨 X-Class Solar Flares
 
-```bash
-# Requires Android SDK + JDK 17. From the project root:
-gradle wrapper --gradle-version 8.7   # first time only, to create ./gradlew
-./gradlew :app:assembleDebug
-# APK -> app/build/outputs/apk/debug/Space Weather Alerts.apk
-```
+Notification alerts can be enabled or disabled at any time from within the application's Settings screen.
 
-Drop the real `not.wav` into `app/src/main/res/raw/not.wav` before building if you want the branded sound (a silent placeholder is committed so the project always compiles).
+Note: Due to Android security and battery optimization policies, notification permissions must be granted before Space Weather Alert can send push notifications.
 
-## Assets
+📱 Home Screen Widget
 
-| Asset | Source |
-|-------|--------|
-| Dashboard | `https://pole-shift.observer/app1/index.html` |
-| Splash image | `https://pole-shift.observer/app1/spaceweather.png` (loaded at runtime) |
-| Notification sound | `https://pole-shift.observer/app1/not.wav` (bundled at build) |
-| Flare alert image | `https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0131.jpg` |
-| X-ray data | `https://services.swpc.noaa.gov/json/goes/primary/xray-flares-latest.json` + `xray-flares-7-day.json` |
+Stay informed without opening the app.
 
-## Note on the 60-second cadence
+The included Android home screen widget continuously displays:
 
-The widget refreshes every 60 s via a self-rescheduling exact `AlarmManager` alarm (the framework's own `updatePeriodMillis` is capped at 30 min, so it's used only as a backstop). When the device is in deep Doze with the screen off, Android may throttle background alarms regardless of app — updates resume at full cadence as soon as the device is active. Exact alarms are granted automatically for this sideloaded build via `USE_EXACT_ALARM`.
+Current Solar X-ray Flux
+Current flare classification
+Time of the most recent M-Class or stronger solar flare
+Automatically refreshing data
+
+Perfect for keeping an eye on solar activity directly from your home screen.
+
+Why Space Weather Matters
+
+Space weather can impact:
+
+HF Radio Communications
+Amateur Radio Operations
+GPS Navigation
+Satellite Communications
+Aviation Routes
+Power Grid Infrastructure
+Scientific Research
+
+Space Weather Alert helps you stay informed when solar conditions begin changing.
+
+Features at a Glance
+📊 Live Space Weather Dashboard
+☀️ Instant Solar X-ray Flux Updates
+🌎 Geomagnetic Storm Monitoring
+💥 Interplanetary Shock Monitoring
+🌊 Gravity Wave Monitoring
+🚨 M-Class & X-Class Solar Flare Alerts
+📱 Android Home Screen Widget
+🔔 Optional Push Notifications
+⚙️ Notification Settings
+⚡ Lightweight and Fast
+🎨 Modern Android Interface
+Installation
+
+Clone the repository:
+
+git clone https://github.com/Pole-Shift/Space-Weather-Alert.git
+
+Open the project using Android Studio, allow Gradle to synchronize, then build and install the application on your Android device.
+
+Requirements
+Android Studio
+Android SDK
+Android 8.0 (API 26) or newer
+Data Sources
+
+Space Weather Alert utilizes publicly available space weather data from trusted scientific and government sources, including NOAA's Space Weather Prediction Center (SWPC) and other publicly available space weather services.
+
+Contributing
+
+Contributions are welcome!
+
+If you would like to improve Space Weather Alert:
+
+Fork the repository.
+Create a feature branch.
+Commit your changes.
+Submit a Pull Request.
+
+Bug reports, feature requests, and suggestions are always appreciated.
+
+License
+
+This project is licensed under the MIT License.
+
+Disclaimer
+
+Space Weather Alert is intended for informational and educational purposes only. While every effort is made to provide timely and accurate information, data availability and notification delivery cannot be guaranteed. Users should always consult official space weather agencies for operational forecasting or mission-critical decisions.
